@@ -53,7 +53,7 @@ const createPaymentGateway = (req, total, order_id) => {
   let hmac = crypto.createHmac("sha512", secretKey);
   let signed = hmac.update(new Buffer(signData, "utf-8")).digest("hex");
   vnp_Params["vnp_SecureHash"] = signed;
-  vnpUrl = "?" + querystring.stringify(vnp_Params, { encode: false });
+  vnpUrl += "?" + querystring.stringify(vnp_Params, { encode: false });
 
   return {
     message: "Payment gateway created successfully",
