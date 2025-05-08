@@ -16,13 +16,13 @@ const sendVerificationEmail = async (email, token) => {
     subject: "Email Verification",
     html: `
       <div style="font-family: Arial, sans-serif; line-height: 1.6;">
-        <p>Chào bạn,</p>
-        <p>Vui lòng nhấn vào liên kết bên dưới để xác thực email của bạn:</p>
+        <p>Hello,</p>
+        <p>Please click the link below to verify your email.:</p>
         <p>
           <a href="${link}" style="color: #1a73e8;">${link}</a>
         </p>
-        <p>Nếu bạn không yêu cầu xác thực, hãy bỏ qua email này.</p>
-        <p>Trân trọng,<br>Đội ngũ hỗ trợ</p>
+        <p>If you do not require authentication, please ignore this email.</p>
+        <p>Regards,<br>Support team</p>
       </div>
     `,
   };
