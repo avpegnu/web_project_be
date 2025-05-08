@@ -48,14 +48,13 @@ const createPaymentGateway = (req, total, order_id) => {
   vnp_Params = sortObject(vnp_Params);
 
   let querystring = require("qs");
-  let signData = querystring.stringify(vnp_Params, { encode: true });
+  let signData = querystring.stringify(vnp_Params, { encode: false });
   let crypto = require("crypto");
   let hmac = crypto.createHmac("sha512", secretKey);
   let signed = hmac.update(new Buffer(signData, "utf-8")).digest("hex");
   vnp_Params["vnp_SecureHash"] = signed;
-  vnpUrl = "?" + querystring.stringify(vnp_Params, { encode: true });
-  console.log("vnpUrl: ", vnpUrl);
-  console.log("vnp_Params: ", vnp_Params);
+  vnpUrl += "?" + querystring.stringify(vnp_Params, { encode: false });
+
   return {
     message: "Payment gateway created successfully",
     data: vnpUrl,
