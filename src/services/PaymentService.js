@@ -38,7 +38,7 @@ const createPaymentGateway = (req, total, order_id) => {
   vnp_Params["vnp_OrderInfo"] = "Thanh toan cho ma GD:" + orderId;
   vnp_Params["vnp_OrderType"] = "other";
   vnp_Params["vnp_Amount"] = amount * 100;
-  vnp_Params["vnp_ReturnUrl"] = returnUrl;
+  vnp_Params["vnp_ReturnUrl"] = encodeURIComponent(returnUrl);
   vnp_Params["vnp_IpAddr"] = ipAddr;
   vnp_Params["vnp_CreateDate"] = createDate;
   if (bankCode !== null && bankCode !== "") {
