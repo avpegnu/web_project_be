@@ -16,6 +16,7 @@ const createPaymentGateway = (req, total, order_id) => {
   let secretKey = "YATOAUMR9KM6ZGUXS7SH5EVZRMS3DLY8";
   let vnpUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
   const returnUrl = `${process.env.FRONTEND_URL}/success-order?vnp_success=1`;
+  console.log("returnUrl", returnUrl);
   let orderId = order_id;
   let amount = total * 26000;
   // let amount = 10000;
@@ -61,28 +62,19 @@ const createPaymentGateway = (req, total, order_id) => {
   };
 };
 
-// function sortObject(obj) {
-//   let sorted = {};
-//   let str = [];
-//   let key;
-//   for (key in obj) {
-//     if (obj.hasOwnProperty(key)) {
-//       str.push(encodeURIComponent(key));
-//     }
-//   }
-//   str.sort();
-//   for (key = 0; key < str.length; key++) {
-//     sorted[str[key]] = encodeURIComponent(obj[str[key]]).replace(/%20/g, "+");
-//   }
-//   return sorted;
-// }
-
 function sortObject(obj) {
-  const sorted = {};
-  const keys = Object.keys(obj).sort();
-  keys.forEach((key) => {
-    sorted[key] = obj[key];
-  });
+  let sorted = {};
+  let str = [];
+  let key;
+  for (key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      str.push(encodeURIComponent(key));
+    }
+  }
+  str.sort();
+  for (key = 0; key < str.length; key++) {
+    sorted[str[key]] = encodeURIComponent(obj[str[key]]).replace(/%20/g, "+");
+  }
   return sorted;
 }
 
