@@ -9,9 +9,10 @@ const createOrder = async (req) => {
   try {
     const orderData = req.body;
     const { payment_method } = orderData;
+    console.log("orderData", orderData);
     const response = await Order.create(orderData);
     if (payment_method === "cash_on_delivery") {
-      return `${FRONTEND_URL}/success-order`;
+      return `${process.env.FRONTEND_URL}/success-order`;
     }
     return createPaymentGateway(req, orderData.order_total, response._id);
   } catch (err) {
